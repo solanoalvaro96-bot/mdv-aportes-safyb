@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aportes SAFYB · MDV Auditoría y Consultoría</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@500;600&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6f8;--surface:#fff;--ink:#14212e;--muted:#566574;--line:#d6dde4;--brand:#0e5a5a;--brand-ink:#fff;--soft:#e2f0ee;--warn:#8a5a00;--warn-bg:#fdf1d8;--bad:#a2321f;--ok:#17653a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1820;--surface:#17232e;--ink:#e8eef3;--muted:#9aabb9;--line:#2a3a48;--brand:#5fc2b8;--brand-ink:#08201f;--soft:#173a3a;--warn:#f0c060;--warn-bg:#3a2e12;--bad:#ff8f7a;--ok:#6fd49a}}
+:root[data-theme="dark"]{--bg:#0f1820;--surface:#17232e;--ink:#e8eef3;--muted:#9aabb9;--line:#2a3a48;--brand:#5fc2b8;--brand-ink:#08201f;--soft:#173a3a;--warn:#f0c060;--warn-bg:#3a2e12;--bad:#ff8f7a;--ok:#6fd49a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "Public Sans",system-ui,sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+header{padding:36px 0 22px;border-bottom:1px solid var(--line)}
+.firm{font-weight:600;color:var(--brand);font-size:15px}
+h1{font:600 clamp(28px,5vw,42px)/1.15 Newsreader,Georgia,serif;margin:8px 0 10px;max-width:22ch}
+.lead{color:var(--muted);max-width:62ch;margin:0}
+nav{display:flex;gap:6px;overflow-x:auto;padding:14px 0;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+nav button{font:500 15px "Public Sans",sans-serif;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:9px 16px;border-radius:999px;cursor:pointer;white-space:nowrap}
+nav button[aria-selected="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+button:focus-visible,input:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+section{display:none;padding:10px 0 48px}
+section.on{display:block}
+h2{font:600 26px/1.2 Newsreader,Georgia,serif;margin:18px 0 8px}
+h3{font-size:17px;margin:0 0 4px}
+p{margin:0 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:16px 0}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.note{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:12px 16px;font-size:14.5px;margin:16px 0}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15px;background:var(--surface)}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;background:var(--soft)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:10px 0}
+summary{cursor:pointer;font-weight:600}
+details p{margin:10px 0 0;color:var(--muted)}
+.calc{display:grid;grid-template-columns:minmax(240px,320px) 1fr;gap:22px;align-items:start}
+@media(max-width:760px){.calc{grid-template-columns:1fr}}
+label{display:block;font-weight:500;font-size:14.5px;margin:12px 0 4px}
+input[type=text],input[type=number]{width:100%;font:inherit;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
+.presets button{font:500 14px "Public Sans",sans-serif;border:1px solid var(--brand);color:var(--brand);background:transparent;padding:6px 12px;border-radius:8px;cursor:pointer}
+.check{display:flex;gap:8px;align-items:center;margin-top:12px;font-size:14.5px}
+.total{font:600 34px/1.1 Newsreader,Georgia,serif;margin:2px 0 14px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+@media(max-width:520px){.split{grid-template-columns:1fr}}
+.split .box b{display:block;font-size:22px;font-family:Newsreader,Georgia,serif;font-variant-numeric:tabular-nums}
+.small{font-size:13.5px;color:var(--muted)}
+.diff{font-weight:600}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+ul.links{list-style:none;padding:0;margin:12px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+ul.links a{display:block;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;color:var(--brand);font-weight:600;text-decoration:none}
+footer{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="firm">MDV Auditoría y Consultoría</div>
+  <h1>Aportes al SAFYB para farmacéuticos y bioquímicos</h1>
+  <p class="lead">Qué se paga, sobre qué base se calcula y cómo controlar que el recibo de sueldo y la boleta de aportes coincidan.</p>
+</header>
+
+<nav role="tablist" aria-label="Secciones">
+  <button role="tab" aria-selected="true" data-t="t1">Resumen</button>
+  <button role="tab" aria-selected="false" data-t="t2">Conceptos</button>
+  <button role="tab" aria-selected="false" data-t="t3">Calculadora y control</button>
+  <button role="tab" aria-selected="false" data-t="t4">Piso salarial</button>
+</nav>
+
+<section id="t1" class="on">
+  <h2>Marco general</h2>
+  <div class="grid">
+    <div class="box"><h3>Quién representa al profesional</h3><p>El Sindicato Argentino de Farmacéuticos y Bioquímicos (SAFYB, personería gremial 1784) regula el salario y los adicionales de quienes trabajan con título de farmacéutico en relación de dependencia.</p></div>
+    <div class="box"><h3>Qué es el piso salarial</h3><p>Es el mínimo que debe percibir el profesional, homologado por la autoridad laboral en el marco de los CCT 691/14, 707/15, 794/22 y 795/22.</p></div>
+    <div class="box"><h3>Qué no tiene valor laboral</h3><p>Las remuneraciones u honorarios que publican los Colegios profesionales carecen de valor legal en lo laboral. ADEF, FATSA y UTEDYC no representan a los trabajadores con título de farmacéutico.</p></div>
+  </div>
+  <h2>Cómo se arma el control</h2>
+  <p>Los aportes se calculan con dos bases distintas: el <b>salario básico</b> para capacitación y aporte patronal, y el <b>salario integral</b> para el resto. Después se reparten en dos rubros, que son los que figuran en la boleta.</p>
+  <div class="split">
+    <div class="box"><h3>Aporte patronal</h3><p class="small" style="margin:0">Art. 27 + Art. 28 + 2/3 del seguro (Art. 32)</p></div>
+    <div class="box"><h3>Cuota sindical</h3><p class="small" style="margin:0">Art. 30 + 1/3 del seguro (Art. 32)</p></div>
+  </div>
+  <div class="note">Contenido informativo preparado a partir de la planilla de control de aportes y de la web del SAFYB. Confirmá siempre alícuotas y bases vigentes con el sindicato.</div>
+</section>
+
+<section id="t2">
+  <h2>Conceptos y alícuotas</h2>
+  <div class="scroll"><table>
+    <tr><th>Concepto</th><th class="n">%</th><th>Base</th><th>Dónde se controla</th></tr>
+    <tr><td>Art. 27 · Capacitación</td><td class="n">0,5%</td><td>Salario básico</td><td>Contribución (boleta)</td></tr>
+    <tr><td>Art. 28 · Aporte patronal</td><td class="n">1%</td><td>Salario básico</td><td>Contribución (boleta)</td></tr>
+    <tr><td>Art. 29 · Sindical</td><td class="n">2%</td><td>Salario integral</td><td>Sin importe en la planilla; verificar</td></tr>
+    <tr><td>Art. 30 · Solidaria</td><td class="n">1,5%</td><td>Salario integral</td><td>Recibo de sueldo</td></tr>
+    <tr><td>Art. 32 · Seguro</td><td class="n">1%</td><td>Salario integral</td><td>Contribución (boleta)</td></tr>
+  </table></div>
+  <h2>Preguntas frecuentes</h2>
+  <details><summary>¿Qué diferencia hay entre salario básico e integral?</summary><p>El básico es el sueldo base del piso salarial. El integral suma los adicionales y es la base de los Arts. 29, 30 y 32.</p></details>
+  <details><summary>¿Por qué el seguro se divide en tercios?</summary><p>La planilla asigna 2/3 del seguro al aporte patronal y 1/3 a la cuota sindical. La suma de ambos rubros da el total de la boleta.</p></details>
+  <details><summary>¿Qué debe coincidir con el recibo de sueldo?</summary><p>El Art. 30 (solidaria), que se descuenta al trabajador. El resto corresponde a contribuciones del empleador.</p></details>
+  <details><summary>¿Y el Art. 29?</summary><p>La planilla lo muestra con su alícuota y base, pero sin importe y fuera del total. Conviene confirmar con el SAFYB si aplica en cada caso.</p></details>
+</section>
+
+<section id="t3">
+  <h2>Calculadora y control</h2>
+  <div class="calc">
+    <div class="box">
+      <h3>Datos del período</h3>
+      <div class="presets" id="presets"></div>
+      <label for="b">Base salario básico ($)</label>
+      <input id="b" type="text" inputmode="decimal" value="2630000">
+      <label for="i">Base salario integral ($)</label>
+      <input id="i" type="text" inputmode="decimal" value="5936588,73">
+      <div class="check"><input type="checkbox" id="c29"><label for="c29" style="margin:0">Incluir Art. 29 en el total</label></div>
+      <h3 style="margin-top:18px">Para controlar (opcional)</h3>
+      <label for="rb">Importe de la boleta ($)</label>
+      <input id="rb" type="text" inputmode="decimal" placeholder="Total de la boleta">
+      <label for="rr">Art. 30 del recibo de sueldo ($)</label>
+      <input id="rr" type="text" inputmode="decimal" placeholder="Descuento en recibo">
+    </div>
+    <div>
+      <div class="small">Total a pagar</div>
+      <div class="total" id="tot">$ 0</div>
+      <div class="split">
+        <div class="box"><span class="small">Aporte patronal</span><b id="ap">0</b></div>
+        <div class="box"><span class="small">Cuota sindical</span><b id="cs">0</b></div>
+      </div>
+      <div class="scroll"><table>
+        <thead><tr><th>Concepto</th><th class="n">Base</th><th class="n">Importe</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table></div>
+      <div id="ctl" style="margin-top:14px"></div>
+    </div>
+  </div>
+  <div class="note">Los valores precargados corresponden a períodos de la planilla Control_Aportes. Las fechas se interpretaron como octubre 2025, marzo 2026 y octubre 2026.</div>
+</section>
+
+<section id="t4">
+  <h2>Piso salarial farmacéutico</h2>
+  <p>Escalas publicadas por el SAFYB. Abren los documentos oficiales en una pestaña nueva.</p>
+  <ul class="links">
+    <li><a target="_blank" rel="noopener" href="https://1drv.ms/b/c/2bed0d6e99d81f2b/IQDZhkt7cO5HTLe61NMMed6mAbPf6ensAVVU2gQHR-_Zlyc?e=A37Bpm">Piso salarial 2026</a></li>
+    <li><a target="_blank" rel="noopener" href="https://1drv.ms/b/c/d5745b941ef2cb5a/Ee9uhiaSq0JOrcL62MbcC8MBBrExTZkabA16mzru40P7zA?e=6wlvXD">Piso salarial 2025</a></li>
+    <li><a target="_blank" rel="noopener" href="https://1drv.ms/b/s!AlrL8h6UW3TVgfxaQyABfDpFk5TrGQ?e=J2mcPu">Piso salarial 2024</a></li>
+    <li><a target="_blank" rel="noopener" href="https://1drv.ms/b/s!AlrL8h6UW3TVy0irgboIDDDFR-Cb?e=hbpRN0">Piso salarial 2023</a></li>
+    <li><a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1r9q0hNUd-OZWsbSCkmpbmvNre-V5ULg3/view?usp=sharing">Piso salarial 2022</a></li>
+  </ul>
+  <p class="small">Fuente: <a target="_blank" rel="noopener" href="https://safyb.org.ar/salarios-farmaceuticos" style="color:var(--brand)">safyb.org.ar/salarios-farmaceuticos</a>. Consultas al SAFYB: safyb@live.com.</p>
+</section>
+
+<footer>MDV Auditoría y Consultoría · Material informativo, no reemplaza el asesoramiento profesional.</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const fmt=n=>new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',minimumFractionDigits:2}).format(n);
+const num=s=>{s=String(s||'').trim().replace(/\$|\s/g,'');if(!s)return 0;if(s.includes(',')){s=s.replace(/\./g,'').replace(',','.')}else if((s.match(/\./g)||[]).length>1){s=s.replace(/\./g,'')}const v=parseFloat(s);return isNaN(v)?0:v};
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x===b));
+  document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id===b.dataset.t));
+  window.scrollTo({top:0});
+});
+const presets=[['Oct 2025',1966670,4518424.33],['Mar 2026',2195000,5119837.49],['Oct 2026',2630000,5936588.73]];
+presets.forEach(([n,b,i])=>{const x=document.createElement('button');x.textContent=n;x.onclick=()=>{$('b').value=String(b).replace('.',',');$('i').value=String(i).replace('.',',');calc()};$('presets').appendChild(x)});
+function calc(){
+  const b=num($('b').value),i=num($('i').value),inc=$('c29').checked;
+  const a27=b*.005,a28=b*.01,a29=i*.02,a30=i*.015,a32=i*.01;
+  const ap=a27+a28+a32*2/3,cs=a30+a32/3,tot=ap+cs+(inc?a29:0);
+  $('tot').textContent=fmt(tot);$('ap').textContent=fmt(ap);$('cs').textContent=fmt(cs);
+  const r=[['Art. 27 · Capacitación (0,5%)',b,a27],['Art. 28 · Aporte patronal (1%)',b,a28],['Art. 29 · Sindical (2%)'+(inc?'':' · no incluido'),i,a29],['Art. 30 · Solidaria (1,5%)',i,a30],['Art. 32 · Seguro (1%)',i,a32]];
+  $('rows').innerHTML=r.map(x=>`<tr><td>${x[0]}</td><td class="n">${fmt(x[1])}</td><td class="n">${fmt(x[2])}</td></tr>`).join('');
+  let h='';const rb=num($('rb').value),rr=num($('rr').value);
+  const line=(t,calc,real)=>{const d=real-calc,ok=Math.abs(d)<1;return `<p><b>${t}</b>: calculado ${fmt(calc)}, informado ${fmt(real)}. <span class="diff ${ok?'ok':'bad'}">${ok?'Coincide':'Diferencia de '+fmt(d)}</span></p>`};
+  if(rb)h+=line('Boleta',tot,rb);
+  if(rr)h+=line('Recibo de sueldo (Art. 30)',a30,rr);
+  $('ctl').innerHTML=h?`<div class="box">${h}</div>`:'<p class="small">Cargá el importe de la boleta o del recibo para ver si coinciden.</p>';
+}
+['b','i','c29','rb','rr'].forEach(id=>$(id).addEventListener('input',calc));
+calc();
+</script>
+</body>
+</html>
